@@ -16,7 +16,7 @@ func main() {
 	e.Static("/static", "public/static/")
 	e.GET("/api", apiHandler).Name = "api"
 	e.GET("/", indexHandlerFactory()).Name = "index"
-	e.Logger.Fatal(e.StartTLS(":8000", "localhost.pem", "localhost-key.pem"))
+	e.Logger.Fatal(e.Start(":8000"))
 }
 
 func getLogger() echo.MiddlewareFunc {
