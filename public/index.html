@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="static/style.css" media="all" />
+    <script src="static/index.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <form id="mainForm" class="container mx-auto" action="/api" type="GET">
+      <div class="w-full max-w-md">
+        <select name="tzid" readonly="true" requred>
+          {{ range $key, $value := index . "zones" }}
+          <option value="{{$value}}">{{$value}}</option>
+          {{ end }}
+          <option value=""></option>
+        </select>
+        <label for="">
+          Title
+          <input id="" type="text" name="title" />
+        </label>
+        <label for="">
+          Description
+          <input id="" type="text" name="desc" />
+        </label>
+        <label for="">
+          URL
+          <input id="" type="text" name="url" />
+        </label>
+        <label for="">
+          Start
+          <input id="" type="datetime-local" name="start" />
+        </label>
+        <label for="">
+          End
+          <input id="" type="datetime-local" name="end" />
+        </label>
+        <label for="">
+          Organizer
+          <input id="" type="text" name="organizer" />
+        </label>
+        <button>
+          Send
+        </button>
+      </div>
+    </form>
+    <script>
+      var select = document.querySelector('select');
+      select.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    </script>
+  </body>
+</html>
