@@ -205,3 +205,4 @@ typings/
 
 # End of https://www.gitignore.io/api/node
 public/static
+client/dist
