@@ -4,4 +4,4 @@ default:
 	go run *.go;
 build_client:
 	@echo Start build client
-	cd client && npx parcel build --out-dir ../public/static/ index.html
+	cd client && npm start
