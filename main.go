@@ -13,9 +13,8 @@ func main() {
 	e := echo.New()
 	e.Use(getLogger())
 	e.Renderer = Renderer()
-	e.Static("/static", "public/static/")
+	e.Static("/", "public/static/")
 	e.GET("/api", apiHandler).Name = "api"
-	e.GET("/", indexHandlerFactory()).Name = "index"
 	e.Logger.Fatal(e.Start(":8000"))
 }
 
@@ -42,15 +41,3 @@ func getResponseFileName(title string, start time.Time) string {
 	return fmt.Sprintf("attachment; filename=\"%s-%s.ics\"", title, start.Format("20060102T0303pm"))
 }
 
-func indexHandlerFactory() func(c echo.Context) error {
-	timezone, err := readTimezoneFromFS()
-	list := timezone.GetTimeList()
-	if err != nil {
-		return nil
-	}
-	return func(c echo.Context) error {
-		return c.Render(http.StatusOK, "index.html", map[string]interface{}{
-			"zones": list,
-		})
-	}
-}
